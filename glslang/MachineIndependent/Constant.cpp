@@ -275,8 +275,9 @@ TIntermTyped* TIntermConstantUnion::fold(TOperator op, const TIntermTyped* right
                         break;
                     } else goto modulo_default;
                 default:
-                modulo_default:
-                    newConstArray[i] = leftUnionArray[i] % rightUnionArray[i];
+                 modulo_default:
+                    newConstArray[i] =
+                        (leftUnionArray[i] - rightUnionArray[i] * (leftUnionArray[i] / rightUnionArray[i])).CopySign(rightUnionArray[i]);
                 }
             }
         }
